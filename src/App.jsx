@@ -2,19 +2,27 @@ import { useState } from "react";
 import "./App.css";
 import Header from "./Components/Header";
 import Home from "./Components/Home";
+import Users from "./Components/Users";
 import Navbar from "./Components/Navbar";
-import Footer from "./Components/Footer";
+import ArticlesList from "./Components/ArticlesList";
+import TopicsList from "./Components/TopicsList";
+import SelectedArticle from "./Components/SelectedArticle";
 import { Routes, Route } from "react-router";
 
 function App() {
   return (
     <>
       <Header />
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-      <Footer />
+      <div className="column">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/articles" element={<ArticlesList />} />
+          <Route path="/topics" element={<TopicsList />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/articles/:article_id" element={<SelectedArticle />} />
+        </Routes>
+        <Navbar />
+      </div>
     </>
   );
 }

@@ -2,63 +2,33 @@ import { useState } from "react";
 import { getArticles } from "../utils/getData";
 import { useEffect } from "react";
 import { getArticlesByCommentCount } from "../utils/getArticlesByCommentCount";
+import ArticleCard from "./ArticleCard";
+import { useLoadingErrorHook } from "../hooks/useLoadingErrorHook";
 
 export default function Home() {
-  const [articles, setArticles] = useState([]);
-
-  useEffect(() => {
-    async function getData() {
-      const response = await getArticlesByCommentCount();
-      console.log(response);
-      setArticles(response.articles);
-    }
-
-    getData();
-  }, []);
-
-  let threeArticles = articles.slice(0, 2);
-  console.log(threeArticles);
-  const mappedArticles = threeArticles.map((article) => {
-    return (
-      <div key={article.article_id} className="articleCard">
-        <p>Author: {article.title}</p>
-        <p>Topic: {article.topic}</p>
-        <p>Created at: {article.created_at}</p>
-        <p>Author: {article.comment_count}</p>
-        <img src={article.article_img_url} alt="" />
-      </div>
-    );
+  const { data, isLoading, error } = useLoadingErrorHook(getArticles, {
+    dependencies: [],
+    params: {},
   });
+
+  if (isLoading) {
+    return <h1>Fetching your favourite news...</h1>;
+  }
+  if (error) {
+    return <h1>Sorry! Somethings gone awry. Please try again later.</h1>;
+  }
+
+  const articles = data.articles || [];
 
   return (
     <>
-      <main>{articles.length > 0 && mappedArticles}</main>{" "}
+      <h1>todays HOT articles!</h1>
+
+      <section>
+        {articles.slice(0, 3).map((article) => (
+          <ArticleCard key={article.article_id} article={article} />
+        ))}
+      </section>
     </>
   );
 }
-
-/* article_id
-: 
-35
-article_img_url
-: 
-"https://images.pexels.com/photos/33242/cooking-ingredient-cuisine-kitchen.jpg?w=700&h=700"
-author
-: 
-"cooljmessy"
-comment_count
-: 
-14
-created_at
-: 
-"2020-05-26T07:25:00.000Z"
-title
-: 
-"Stone Soup"
-topic
-: 
-"cooking"
-votes
-: 
-0
-*/
