@@ -1,5 +1,6 @@
 import { getCommentsById } from "../utils/getData";
 import { useLoadingErrorHook } from "../hooks/useLoadingErrorHook";
+import Comment from "./Comment";
 
 export default function CommentsList(props) {
   const id = props.id;
@@ -16,13 +17,19 @@ export default function CommentsList(props) {
     return <h1>Sorry! Somethings gone awry. Please try again later.</h1>;
   }
 
-  console.log(data);
   const { comments } = data;
-  console.log(comments);
 
   return (
     <>
-      <ul></ul>
+      <ul className="commentTable">
+        {comments.map((comment) => {
+          return (
+            <li key={comment.comment_id}>
+              <Comment data={comment} />
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 }

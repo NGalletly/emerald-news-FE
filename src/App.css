@@ -7,21 +7,21 @@
 
 .column {
   min-width: 360px;
-  width: 80vw;
+  max-width: 80vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   /* background-color: rgba(255, 0, 0, 0.1); */
-  min-height: 100vh;
-  margin-left: 50px;
+  height: auto;
   margin-top: 100px;
+  margin-left: 50px;
   padding: 0;
 }
 
 body {
   background: bisque;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 header {
@@ -122,7 +122,68 @@ nav a {
   box-sizing: content-box;
 }
 
-.singleArticleCard > img {
+.singleArticleCard img {
   width: 350px;
   height: auto;
+}
+
+.commentCard {
+  border: 1px solid white;
+}
+
+.commentTable {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 100px;
+}
+
+.commentTable li {
+  width: 100%;
+  list-style: none;
+  padding: 5px 5px;
+}
+
+.commentCard p {
+  padding: 5px 50px;
+}
+
+.likeBar {
+  font-size: 20px;
+  display: flex;
+  min-width: 350px;
+  justify-content: space-around;
+  height: 60px;
+  margin: 15px 0;
+  border: 1px solid white;
+}
+
+.likeBar button {
+  background-color: rgb(3, 64, 3);
+  border: 2px solid white;
+  color: bisque;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 4px 12px rgba(255, 56, 60, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 24px rgba(255, 56, 60, 0.8);
+  }
+  100% {
+    box-shadow: 0 4px 12px rgba(255, 56, 60, 0.4);
+  }
+}
+
+.like-btn:hover {
+  animation: glow 0.8s ease-in-out;
+  color: white;
+}
+
+.is-liked {
+  animation: glow 0.8s ease-in-out;
+  background-color: #ff383c;
+  color: white;
 }
