@@ -1,8 +1,11 @@
 import { Link } from "react-router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../contexts/UserContextProvider";
 
 export default function Header() {
-  const [userState, setUserState] = useState({ name: "default User" });
+  const { loggedInUser } = useContext(UserContext);
+
+  console.log(loggedInUser);
 
   return (
     <header>
@@ -12,8 +15,11 @@ export default function Header() {
         <Link to="/Users">
           <p>
             Logged in as: <br></br>
-            {userState.name}
+            {loggedInUser.userName}
           </p>
+          <strong>
+            <img src={loggedInUser.avatar_url} alt="" />
+          </strong>
         </Link>
       </div>
     </header>

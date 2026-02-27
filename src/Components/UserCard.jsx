@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export default function UserCard(props) {
   const { username, name, avatar_url } = props.userData;
   console.log(username, name, avatar_url);

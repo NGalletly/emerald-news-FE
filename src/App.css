@@ -304,3 +304,33 @@ textarea {
     height: 150px;
   }
 }
+
+.userBox > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid bisque;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.userBox a:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.userBox img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid bisque;
+}
+
+.userBox p {
+  color: bisque;
+  font-size: 11px;
+}
