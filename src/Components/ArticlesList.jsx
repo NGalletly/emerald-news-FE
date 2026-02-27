@@ -19,12 +19,10 @@ export default function ArticlesList() {
   return (
     <>
       <h1>articles</h1>
-      <main>
-        <section>
-          {articles.map((article) => (
-            <Slither key={articles.article_id} article={article} />
-          ))}
-        </section>
+      <main className="articleList">
+        {articles.map((article) => (
+          <Slither key={article.article_id} article={article} />
+        ))}
       </main>
     </>
   );

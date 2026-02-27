@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import { getArticlesById } from "../utils/getData";
 import { useLoadingErrorHook } from "../hooks/useLoadingErrorHook";
 import CommentsList from "./CommentsList";
+import CommentForm from "./CommentForm";
 import { timeFormatter } from "../utils/timeFormatter";
 
 export default function SelectedArticle() {
   const { article_id } = useParams();
   const [liked, setLiked] = useState(false);
   const [voteCount, setVoteCount] = useState(0);
+  const [commented, setCommented] = useState(false);
 
   const { data, isLoading, error } = useLoadingErrorHook(getArticlesById, {
     dependencies: [article_id],
@@ -52,6 +54,10 @@ export default function SelectedArticle() {
     }
   }
 
+  function handleComment() {
+    setCommented((prev) => !prev);
+  }
+
   return (
     <div>
       <section className="singleArticleCard column">
@@ -71,7 +77,16 @@ export default function SelectedArticle() {
             {/* &#129293; */}
           </button>
         </div>
-        <h3>comments: {comment_count}</h3>
+        <div className="commentBar likeBar">
+          <h3>comments: {comment_count}</h3>
+          <button
+            className={commented ? "like-btn is-liked" : "like-btn "}
+            onClick={handleComment}
+          >
+            {commented ? "Cancel" : <p> &#128172;</p>}
+          </button>
+        </div>
+        {commented && <CommentForm />}
       </section>
       <CommentsList id={article_id} />
     </div>

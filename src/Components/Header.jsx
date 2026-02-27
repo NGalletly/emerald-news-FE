@@ -8,12 +8,14 @@ export default function Header() {
     <header>
       <h1>Neville's News App</h1>
 
-      <Link to="/Users">
-        <p>
-          Logged in as: <br></br>
-          {userState.name}
-        </p>
-      </Link>
+      <div className="userBox">
+        <Link to="/Users">
+          <p>
+            Logged in as: <br></br>
+            {userState.name}
+          </p>
+        </Link>
+      </div>
     </header>
   );
 }

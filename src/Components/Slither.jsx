@@ -18,20 +18,18 @@ export default function Slither({ article }) {
   const formatTime = timeFormatter(created_at);
   console.log(formatTime);
   return (
-    <>
-      <div key={article_id} className="slither">
-        <p>{title}</p>
-        <p>Topic: {topic}</p>
-        <p>Created at: {formatTime}</p>
-        <p>author: {author}</p>
-        <p>comment_count: {comment_count}</p>
-        <p>votes: {votes}</p>
-        <img src={article_img_url} alt="" />
-
-        <Link to={`/articles/${article_id}`}>
-          <button>More</button>
-        </Link>
-      </div>
-    </>
+    <div className="slitherCard">
+      <p>{title}</p>
+      <p>Topic: {topic}</p>
+      <p>{formatTime}</p>
+      <p>By: {author}</p>
+      <p>
+        Comments: {comment_count} · Votes: {votes}
+      </p>
+      <img src={article_img_url} alt="" />
+      <Link to={`/articles/${article_id}`}>
+        <button>More</button>
+      </Link>
+    </div>
   );
 }

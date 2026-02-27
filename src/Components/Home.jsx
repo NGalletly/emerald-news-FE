@@ -24,7 +24,7 @@ export default function Home() {
     <>
       <h1>todays HOT articles!</h1>
 
-      <section>
+      <section className="home">
         {articles.slice(0, 3).map((article) => (
           <ArticleCard key={article.article_id} article={article} />
         ))}
