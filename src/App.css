@@ -53,9 +53,10 @@ header p {
 }
 
 .articleCard img {
-  height: auto;
-  width: 100px;
+  height: 160px;
+  width: 160px;
   box-sizing: content-box;
+  object-fit: cover;
 }
 
 nav {
