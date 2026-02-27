@@ -15,7 +15,7 @@ export default function Header() {
         <Link to="/Users">
           <p>
             Logged in as: <br></br>
-            {loggedInUser.userName}
+            {loggedInUser.username}
           </p>
           <strong>
             <img src={loggedInUser.avatar_url} alt="" />
