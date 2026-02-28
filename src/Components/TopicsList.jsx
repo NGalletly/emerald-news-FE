@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getTopics } from "../utils/getData";
 import { useLoadingErrorHook } from "../hooks/useLoadingErrorHook";
+import { Link } from "react-router-dom";
 
 export default function TopicsList() {
   const { data, isLoading, error } = useLoadingErrorHook(getTopics);
@@ -21,13 +22,15 @@ export default function TopicsList() {
       <main className="topicGrid">
         {topics.map((topic) => {
           return (
-            <div key={topic.slug} className="topicCard">
-              <section className="topic_Card">
-                <h3>{topic.slug}</h3>
-                <img src={topic.img_url} alt="" />
-                <p>{topic.description}</p>
-              </section>
-            </div>
+            <Link to={`/topics/${topic.slug}`} key={topic.slug}>
+              <div key={topic.slug} className="topicCard">
+                <section className="topic_Card">
+                  <h3>{topic.slug}</h3>
+                  <img src={topic.img_url} alt="" />
+                  <p>{topic.description}</p>
+                </section>
+              </div>
+            </Link>
           );
         })}
       </main>
