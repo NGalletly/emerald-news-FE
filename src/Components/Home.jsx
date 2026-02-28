@@ -21,7 +21,7 @@ export default function Home() {
   const articles = data.articles || [];
 
   return (
-    <>
+    <div className="pageContainer">
       <h1>todays HOT articles!</h1>
 
       <section className="home">
@@ -29,6 +29,6 @@ export default function Home() {
           <ArticleCard key={article.article_id} article={article} />
         ))}
       </section>
-    </>
+    </div>
   );
 }

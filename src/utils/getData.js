@@ -28,6 +28,13 @@ export async function getArticlesById(id) {
   return response.data;
 }
 
+export async function getArticlesByTopics(topic) {
+  const response = await axios.get(
+    `https://nevilles-news.onrender.com/api/articles?topic=${topic}`,
+  );
+  return response.data;
+}
+
 export async function getCommentsById(id) {
   const response = await axios.get(
     `https://nevilles-news.onrender.com/api/articles/${id}/comments`,

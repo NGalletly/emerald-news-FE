@@ -7,6 +7,7 @@ import Navbar from "./Components/Navbar";
 import ArticlesList from "./Components/ArticlesList";
 import TopicsList from "./Components/TopicsList";
 import SelectedArticle from "./Components/SelectedArticle";
+import TopicsArticles from "./Components/TopicsArticles";
 import { Routes, Route } from "react-router";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/topics" element={<TopicsList />} />
           <Route path="/users" element={<Users />} />
           <Route path="/articles/:article_id" element={<SelectedArticle />} />
+          <Route path="topics/:topics_id" element={<TopicsArticles />} />
         </Routes>
         <Navbar />
       </div>

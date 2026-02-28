@@ -17,13 +17,13 @@ export default function Users() {
   const users = data.users || [];
 
   return (
-    <>
+    <div className="pageContainer">
       <h1>Pick user to login:</h1>
       <section className="profileContainer">
         {users.map((user) => {
           return <UserCard key={user.username} userData={user} />;
         })}
       </section>
-    </>
+    </div>
   );
 }

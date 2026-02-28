@@ -17,13 +17,13 @@ export default function ArticlesList() {
   const articles = data.articles || [];
 
   return (
-    <>
+    <div className="pageContainer">
       <h1>articles</h1>
       <main className="articleList">
         {articles.map((article) => (
           <Slither key={article.article_id} article={article} />
         ))}
       </main>
-    </>
+    </div>
   );
 }

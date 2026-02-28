@@ -9,7 +9,6 @@ export default function TopicsList() {
     return <h1>Fetching the hottest topics...</h1>;
   }
   console.log(data.topics);
-
   if (error) {
     return <h1>Sorry! Somethings gone awry. Please try again later.</h1>;
   }
@@ -18,14 +17,17 @@ export default function TopicsList() {
 
   return (
     <div>
-      <h1>topics</h1>
-      <main>
+      <h1 className="pageHeader">Categories</h1>
+      <main className="topicGrid">
         {topics.map((topic) => {
           return (
-            <section key={topic.slug} className="topic_Card">
-              <h3>{topic.slug}</h3>
-              <p>{topic.description}</p>
-            </section>
+            <div key={topic.slug} className="topicCard">
+              <section className="topic_Card">
+                <h3>{topic.slug}</h3>
+                <img src={topic.img_url} alt="" />
+                <p>{topic.description}</p>
+              </section>
+            </div>
           );
         })}
       </main>
