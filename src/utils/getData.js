@@ -1,69 +1,50 @@
-export function getArticles() {
-  return fetch(`https://nevilles-news.onrender.com/api/articles`).then(
-    (res) => {
-      if (!res.ok) {
-        return Promise.reject({
-          status: res.status,
-          msg: "Failed to fetch articles",
-        });
-      }
+import axios from "axios";
 
-      return res.json();
-    },
+export async function getTopics() {
+  const response = await axios.get(
+    `https://nevilles-news.onrender.com/api/topics`,
   );
+  return response.data;
 }
 
-export function getTopics() {
-  return fetch(`https://nevilles-news.onrender.com/api/topics`).then((res) => {
-    if (!res.ok) {
-      return Promise.reject({
-        status: res.status,
-        msg: "Failed to fetch articles",
-      });
-    }
-
-    return res.json();
-  });
-}
-export function getUsers() {
-  return fetch(`https://nevilles-news.onrender.com/api/Users`).then((res) => {
-    if (!res.ok) {
-      return Promise.reject({
-        status: res.status,
-        msg: "Failed to fetch articles",
-      });
-    }
-
-    return res.json();
-  });
-}
-
-export function getArticlesById(id) {
-  return fetch(`https://nevilles-news.onrender.com/api/articles/${id}`).then(
-    (res) => {
-      if (!res.ok) {
-        return Promise.reject({
-          status: res.status,
-          msg: "Failed to fetch articles",
-        });
-      }
-
-      return res.json();
-    },
+export async function getArticles() {
+  const response = await axios.get(
+    `https://nevilles-news.onrender.com/api/articles`,
   );
+  return response.data;
 }
 
-export function getCommentsById(id) {
-  return fetch(`https://nevilles-news.onrender.com/api/articles/${id}/comments`).then(
-    (res) => {
-      if (!res.ok) {
-        return Promise.reject({
-          status: res.status,
-          msg: "Failed to fetch articles",
-        });
-      }
+export async function getUsers() {
+  const response = await axios.get(
+    `https://nevilles-news.onrender.com/api/Users`,
+  );
+  return response.data;
+}
 
-      return res.json();
-    },
+export async function getArticlesById(id) {
+  const response = await axios.get(
+    `https://nevilles-news.onrender.com/api/articles/${id}`,
+  );
+  return response.data;
+}
+
+export async function getCommentsById(id) {
+  const response = await axios.get(
+    `https://nevilles-news.onrender.com/api/articles/${id}/comments`,
+  );
+  return response.data;
+}
+
+export async function postComment(article_id, username, body) {
+  const response = await axios.post(
+    `https://nevilles-news.onrender.com/api/articles/${article_id}/comments`,
+    { username, body },
+  );
+  return response.data;
+}
+
+export async function deleteComment(comment_id) {
+  const response = await axios.delete(
+    `https://nevilles-news.onrender.com/api/comments/${comment_id}`,
   );
 }

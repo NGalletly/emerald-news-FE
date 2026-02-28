@@ -5,7 +5,7 @@ import { UserContext } from "../contexts/UserContextProvider";
 export default function Header() {
   const { loggedInUser } = useContext(UserContext);
 
-  console.log(loggedInUser);
+  // console.log(loggedInUser);
 
   return (
     <header>

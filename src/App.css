@@ -339,3 +339,12 @@ textarea {
   color: bisque;
   font-size: 11px;
 }
+
+.inputError {
+  color: red;
+  font-size: 18px;
+}
+
+.commentDeleted {
+  display: none;
+}

@@ -16,7 +16,7 @@ export default function Slither({ article }) {
 
   // console.log(created_at);
   const formatTime = timeFormatter(created_at);
-  console.log(formatTime);
+  // console.log(formatTime);
   return (
     <div className="slitherCard">
       <p>{title}</p>

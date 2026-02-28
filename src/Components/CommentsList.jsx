@@ -4,9 +4,10 @@ import Comment from "./Comment";
 
 export default function CommentsList(props) {
   const id = props.id;
+  const refreshComments = props.refreshComments;
 
   const { data, isLoading, error } = useLoadingErrorHook(getCommentsById, {
-    dependencies: [id],
+    dependencies: [id, refreshComments],
     params: id,
   });
 

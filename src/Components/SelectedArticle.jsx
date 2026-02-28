@@ -11,6 +11,8 @@ export default function SelectedArticle() {
   const [liked, setLiked] = useState(false);
   const [voteCount, setVoteCount] = useState(0);
   const [commented, setCommented] = useState(false);
+  const [refreshComments, setRefreshComments] = useState(0);
+  const [inputError, setInputError] = useState("");
 
   const { data, isLoading, error } = useLoadingErrorHook(getArticlesById, {
     dependencies: [article_id],
@@ -30,7 +32,6 @@ export default function SelectedArticle() {
     return <h1>Sorry! Somethings gone awry. Please try again later.</h1>;
   }
   const articles = data.articles || [];
-  console.log(articles);
   const {
     author,
     body,
@@ -86,9 +87,16 @@ export default function SelectedArticle() {
             {commented ? "Cancel" : <p> &#128172;</p>}
           </button>
         </div>
-        {commented && <CommentForm />}
+        {commented && (
+          <CommentForm
+            article_id={article_id}
+            setRefreshComments={setRefreshComments}
+            setInputError={setInputError}
+          />
+        )}
+        {inputError && <p className="inputError">{inputError}</p>}
       </section>
-      <CommentsList id={article_id} />
+      <CommentsList id={article_id} refreshComments={refreshComments} />
     </div>
   );
 }

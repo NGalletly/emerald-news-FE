@@ -1,11 +1,36 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { postComment } from "../utils/getData";
+import { UserContext } from "../contexts/UserContextProvider";
 
-export default function CommentForm() {
+export default function CommentForm({
+  article_id,
+  setRefreshComments,
+  setInputError,
+}) {
   const [comment, setComment] = useState("");
+  const [isPosted, setIsPosted] = useState(false);
+  const { loggedInUser } = useContext(UserContext);
+  console.log(loggedInUser);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    console.log(comment);
+
+    if (comment.length === 0) {
+      setInputError("Error! Please enter a message before submitting.");
+      return;
+    } else if (loggedInUser.username === "No User Selected") {
+      setInputError("Error! Please choose user from userpage to login.");
+      return;
+    } else {
+      // if(!loggedInUser.name){}
+      console.log(comment);
+      await postComment(article_id, loggedInUser.username, comment);
+      setComment("");
+      setInputError("");
+      setIsPosted(true);
+      setRefreshComments((prev) => prev + 1);
+      setTimeout(() => setIsPosted(false), 2000);
+    }
   }
 
   return (
@@ -17,8 +42,14 @@ export default function CommentForm() {
           onChange={(e) => setComment(e.target.value)}
           placeholder="Share your thoughts here. . ."
         />
-        <button className="submitBtn" type="submit">
-          Comment
+        <button
+          className={
+            isPosted ? "like-btn is-liked submitBtn" : "like-btn submitBtn"
+          }
+          type="submit"
+        >
+          {" "}
+          {isPosted ? "Posted!" : "Comment"}
         </button>
       </form>
     </div>
