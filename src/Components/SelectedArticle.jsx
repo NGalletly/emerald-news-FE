@@ -4,6 +4,7 @@ import { getArticlesById } from "../utils/getData";
 import { useLoadingErrorHook } from "../hooks/useLoadingErrorHook";
 import CommentsList from "./CommentsList";
 import CommentForm from "./CommentForm";
+import { patchArticleVote } from "../utils/getData";
 import { timeFormatter } from "../utils/timeFormatter";
 
 export default function SelectedArticle() {
@@ -49,9 +50,11 @@ export default function SelectedArticle() {
     if (!liked) {
       setVoteCount((prev) => prev + 1);
       setLiked(true);
+      patchArticleVote(article_id, 1);
     } else {
       setVoteCount((prev) => prev - 1);
       setLiked(false);
+      patchArticleVote(article_id, -1);
     }
   }
 
@@ -59,6 +62,7 @@ export default function SelectedArticle() {
     setCommented((prev) => !prev);
   }
 
+  console.log(votes);
   return (
     <div>
       <section className="singleArticleCard column">
@@ -69,7 +73,7 @@ export default function SelectedArticle() {
         <p>{body}</p>
         <img src={article_img_url} alt="" />
         <div className="likeBar">
-          <p>&#128150; : {voteCount}</p>
+          <p>&#128150; : {voteCount ?? votes}</p>
           <button
             className={liked ? "like-btn is-liked" : "like-btn"}
             onClick={handleClick}

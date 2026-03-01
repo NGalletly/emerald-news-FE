@@ -11,15 +11,14 @@ export default function ArticleCard({ article }) {
     created_at,
     comment_count,
     article_img_url,
+    votes,
   } = article;
 
   let formatTime = timeFormatter(created_at);
   return (
     <>
       <div key={article_id} className="articleCard">
-        <h3></h3>
         <p>author: {author}</p>
-        <br></br>
         <p>{title}</p>
         <p>Topic: {topic}</p>
         <p>Created at: {formatTime}</p>

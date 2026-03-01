@@ -28,6 +28,14 @@ export async function getArticlesById(id) {
   return response.data;
 }
 
+export async function patchArticleVote(id, changeVote) {
+  const response = await axios.patch(
+    `https://nevilles-news.onrender.com/api/articles/${id}`,
+    { inc_votes: changeVote },
+  );
+  return response.data;
+}
+
 export async function getArticlesByTopics(topic) {
   const response = await axios.get(
     `https://nevilles-news.onrender.com/api/articles?topic=${topic}`,
