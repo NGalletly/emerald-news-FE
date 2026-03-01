@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { getArticles } from "../utils/getData";
+import { getArticles, sortArticles } from "../utils/getData";
 import { useEffect } from "react";
 import { getArticlesByCommentCount } from "../utils/getArticlesByCommentCount";
 import ArticleCard from "./ArticleCard";
 import { useLoadingErrorHook } from "../hooks/useLoadingErrorHook";
 
 export default function Home() {
-  const { data, isLoading, error } = useLoadingErrorHook(getArticles, {
+  const { data, isLoading, error } = useLoadingErrorHook(sortArticles, {
     dependencies: [],
-    params: {},
+    params: { sort_by: "votes", order_by: "desc" },
   });
 
   if (isLoading) {

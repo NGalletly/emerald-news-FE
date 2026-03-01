@@ -100,22 +100,45 @@ nav a {
   overflow: hidden;
   margin: 10px;
 }
-.slitherCard {
-  width: 100%;
-  display: flex;
-  border: 1px solid white;
-  border-radius: 8px;
-  overflow: hidden;
-  margin: 1px 0;
-  padding: 0;
-  height: 90px;
-}
 
 .articleCard img {
   height: 120px;
   width: 120px;
   object-fit: cover;
   flex-shrink: 0;
+}
+
+.slitherCard {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 80px;
+  background: rgba(3, 64, 3, 0.15);
+  border: 1px solid rgba(3, 64, 3, 0.3);
+}
+
+.slitherCard img {
+  width: 30%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slitherCardTitle {
+}
+
+.slitherCardInfo {
+  padding: 0 10px 8px;
+  font-size: 0.72rem;
+  white-space: nowrap;
+  overflow: hidden;
+  color: black;
+  text-overflow: ellipsis;
+}
+
+.slitherCardBtn {
 }
 
 .profileContainer {

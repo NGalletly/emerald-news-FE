@@ -23,6 +23,7 @@ export default function ArticleCard({ article }) {
         <p>Topic: {topic}</p>
         <p>Created at: {formatTime}</p>
         <p>comments: {comment_count}</p>
+        <p>Votes: {votes}</p>
         <img src={article_img_url} alt="" />
 
         <Link to={`/articles/${article.article_id}`}>
