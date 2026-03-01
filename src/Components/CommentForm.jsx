@@ -22,7 +22,6 @@ export default function CommentForm({
       setInputError("Error! Please choose user from userpage to login.");
       return;
     } else {
-      // if(!loggedInUser.name){}
       console.log(comment);
       await postComment(article_id, loggedInUser.username, comment);
       setComment("");
