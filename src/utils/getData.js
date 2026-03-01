@@ -63,3 +63,11 @@ export async function deleteComment(comment_id) {
     `https://nevilles-news.onrender.com/api/comments/${comment_id}`,
   );
 }
+
+export async function sortArticles(sort_by = "created_at", order_by = "asc") {
+  const response = await axios.get(
+    `https://nevilles-news.onrender.com/api/articles?sort_by=${sort_by}&order_by=${order_by}`,
+    { sort_by, order_by },
+  );
+  return response.data;
+}
