@@ -19,10 +19,10 @@ export default function Slither({ article }) {
   // console.log(formatTime);
   return (
     <div className="slitherCard">
-      <p>{title}</p>
-      <p>Topic: {topic}</p>
+      {/* <p>{title}</p> */}
+      {/* <p>Topic: {topic}</p> */}
       <p>{formatTime}</p>
-      <p>By: {author}</p>
+      {/* <p>By: {author}</p> */}
       <p>
         Comments: {comment_count} · Votes: {votes}
       </p>

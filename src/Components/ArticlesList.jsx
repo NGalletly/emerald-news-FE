@@ -4,9 +4,14 @@ import Slither from "./Slither";
 import { useLoadingErrorHook } from "../hooks/useLoadingErrorHook";
 
 export default function ArticlesList() {
-  const { data, isLoading, error } = useLoadingErrorHook(getArticles);
-  const [query, setQuery] = useState("");
-  const [order, setOrder] = useState("");
+  const [query, setQuery] = useState("created_at");
+  const [order, setOrder] = useState("desc");
+  console.log(order);
+
+  const { data, isLoading, error } = useLoadingErrorHook(sortArticles, {
+    dependencies: [query, order],
+    params: { sort_by: query, order_by: order },
+  });
 
   if (isLoading) {
     return <h1>Fetching articles list...</h1>;
@@ -22,6 +27,10 @@ export default function ArticlesList() {
     setQuery(event.target.value);
     console.log(query);
   }
+  function assignOrder(event) {
+    setOrder(event.target.value);
+    console.log(order);
+  }
 
   return (
     <div className="pageContainer">
@@ -33,6 +42,12 @@ export default function ArticlesList() {
           <option value="created_at">Date</option>
           <option value="topic">Topic</option>
         </select>
+        <button value="desc" onClick={assignOrder}>
+          &#8593;
+        </button>
+        <button value="asc" onClick={assignOrder}>
+          &#8595;
+        </button>
       </div>
 
       <main className="articleList">
