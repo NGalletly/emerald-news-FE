@@ -11,7 +11,14 @@ export default function TopicsList() {
   }
   console.log(data.topics);
   if (error) {
-    return <h1>Sorry! Somethings gone awry. Please try again later.</h1>;
+    return (
+      <div>
+        <h2>
+          <p>Error: {error.response?.status}</p>
+        </h2>
+        <h1>Sorry! Article doesn't exist!</h1>
+      </div>
+    );
   }
 
   const topics = data.topics || [];

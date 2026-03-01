@@ -17,7 +17,14 @@ export default function TopicsArticles() {
   }
 
   if (error) {
-    return <h1>Sorry! Somethings gone awry. Please try again later.</h1>;
+    return (
+      <div>
+        <h2>
+          <p>Error: {error.response?.status}</p>
+        </h2>
+        <h1>Sorry! That topic doesn't exist!</h1>
+      </div>
+    );
   }
 
   const articles = data.articles || [];

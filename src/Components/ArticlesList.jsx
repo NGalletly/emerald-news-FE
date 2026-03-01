@@ -18,18 +18,26 @@ export default function ArticlesList() {
   }
 
   if (error) {
-    return <h1>Sorry! Somethings gone awry. Please try again later.</h1>;
+    console.log(error);
+    return (
+      <div>
+        <h2>
+          <p>Error: {error.response?.status}</p>
+        </h2>
+        <h1>Sorry! Somethings gone awry. Please try again later.</h1>
+      </div>
+    );
   }
 
   const articles = data.articles || [];
 
   function assignQuery(event) {
     setQuery(event.target.value);
-    console.log(query);
+    // console.log(query);
   }
   function assignOrder(event) {
     setOrder(event.target.value);
-    console.log(order);
+    // console.log(order);
   }
 
   return (

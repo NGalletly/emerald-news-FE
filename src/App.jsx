@@ -8,6 +8,7 @@ import ArticlesList from "./Components/ArticlesList";
 import TopicsList from "./Components/TopicsList";
 import SelectedArticle from "./Components/SelectedArticle";
 import TopicsArticles from "./Components/TopicsArticles";
+import NotFound from "./Components/NotFound";
 import { Routes, Route } from "react-router";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/users" element={<Users />} />
           <Route path="/articles/:article_id" element={<SelectedArticle />} />
           <Route path="topics/:topics_id" element={<TopicsArticles />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Navbar />
       </div>

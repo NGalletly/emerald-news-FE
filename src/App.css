@@ -110,9 +110,9 @@ nav a {
 
 .slitherCard {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 100px;
+  grid-template-rows: 1fr 1fr;
   border-radius: 8px;
   overflow: hidden;
   height: 80px;
@@ -121,24 +121,53 @@ nav a {
 }
 
 .slitherCard img {
-  width: 30%;
-  height: 100%;
+  grid-column: 3;
+  grid-row: 1 / 3;
+  width: auto;
+  height: 100px;
   object-fit: cover;
 }
 
 .slitherCardTitle {
+  grid-column: 1;
+  grid-row: 1;
+  padding: 8px 10px 2px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #222;
 }
 
 .slitherCardInfo {
+  grid-column: 2;
+  grid-row: 1;
   padding: 0 10px 8px;
   font-size: 0.72rem;
+  color: #555;
   white-space: nowrap;
   overflow: hidden;
-  color: black;
   text-overflow: ellipsis;
 }
 
 .slitherCardBtn {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+}
+
+.slitherCardBtn button {
+  background: rgb(3, 64, 3);
+  color: bisque;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 .profileContainer {

@@ -22,10 +22,14 @@ export async function getUsers() {
 }
 
 export async function getArticlesById(id) {
-  const response = await axios.get(
-    `https://nevilles-news.onrender.com/api/articles/${id}`,
-  );
-  return response.data;
+  try {
+    const response = await axios.get(
+      `https://nevilles-news.onrender.com/api/articles/${id}`,
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 }
 
 export async function patchArticleVote(id, changeVote) {
@@ -68,9 +72,13 @@ export async function sortArticles({
   sort_by = "created_at",
   order_by = "asc",
 }) {
-  const response = await axios.get(
-    `https://nevilles-news.onrender.com/api/articles?sort_by=${sort_by}&order_by=${order_by}`,
-    { sort_by, order_by },
-  );
-  return response.data;
+  try {
+    const response = await axios.get(
+      `https://nevilles-news.onrender.com/api/articles?sort_by=${sort_by}&order_by=${order_by}`,
+      { sort_by, order_by },
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 }

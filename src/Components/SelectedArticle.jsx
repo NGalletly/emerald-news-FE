@@ -16,7 +16,6 @@ export default function SelectedArticle() {
   const [refreshComments, setRefreshComments] = useState(0);
   const [inputError, setInputError] = useState("");
   const { loggedInUser } = useContext(UserContext);
-  // console.log(loggedInUser);
 
   const { data, isLoading, error } = useLoadingErrorHook(getArticlesById, {
     dependencies: [article_id],
@@ -33,7 +32,14 @@ export default function SelectedArticle() {
     return <h1>Loading the article...</h1>;
   }
   if (error) {
-    return <h1>Sorry! Somethings gone awry. Please try again later.</h1>;
+    return (
+      <div>
+        <h2>
+          <p>Error: {error.response?.status}</p>
+        </h2>
+        <h1>Sorry! Article doesn't exist!</h1>
+      </div>
+    );
   }
   const articles = data.articles || {};
   const {
