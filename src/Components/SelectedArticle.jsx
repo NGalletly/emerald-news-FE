@@ -1,19 +1,22 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getArticlesById } from "../utils/getData";
 import { useLoadingErrorHook } from "../hooks/useLoadingErrorHook";
 import CommentsList from "./CommentsList";
 import CommentForm from "./CommentForm";
 import { patchArticleVote } from "../utils/getData";
 import { timeFormatter } from "../utils/timeFormatter";
+import { UserContext } from "../contexts/UserContextProvider";
 
 export default function SelectedArticle() {
   const { article_id } = useParams();
   const [liked, setLiked] = useState(false);
-  const [voteCount, setVoteCount] = useState(0);
+  const [voteCount, setVoteCount] = useState(null);
   const [commented, setCommented] = useState(false);
   const [refreshComments, setRefreshComments] = useState(0);
   const [inputError, setInputError] = useState("");
+  const { loggedInUser } = useContext(UserContext);
+  // console.log(loggedInUser);
 
   const { data, isLoading, error } = useLoadingErrorHook(getArticlesById, {
     dependencies: [article_id],
@@ -32,7 +35,7 @@ export default function SelectedArticle() {
   if (error) {
     return <h1>Sorry! Somethings gone awry. Please try again later.</h1>;
   }
-  const articles = data.articles || [];
+  const articles = data.articles || {};
   const {
     author,
     body,
@@ -47,14 +50,27 @@ export default function SelectedArticle() {
   const formatTime = timeFormatter(created_at);
 
   function handleClick() {
+    if (loggedInUser.username === "No User Selected") {
+      setInputError("Please choose a User profile to leave a like.");
+      return;
+    }
+
     if (!liked) {
       setVoteCount((prev) => prev + 1);
       setLiked(true);
-      patchArticleVote(article_id, 1);
+      patchArticleVote(article_id, 1).catch((err) => {
+        setInputError(err.message);
+        setVoteCount((prev) => prev - 1);
+        setLiked(false);
+      });
     } else {
       setVoteCount((prev) => prev - 1);
       setLiked(false);
-      patchArticleVote(article_id, -1);
+      patchArticleVote(article_id, -1).catch((err) => {
+        setInputError(err.message);
+        setVoteCount((prev) => prev + 1);
+        setLiked(true);
+      });
     }
   }
 
@@ -62,7 +78,6 @@ export default function SelectedArticle() {
     setCommented((prev) => !prev);
   }
 
-  console.log(votes);
   return (
     <div>
       <section className="singleArticleCard column">
