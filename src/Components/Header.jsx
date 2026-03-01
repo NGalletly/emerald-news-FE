@@ -9,7 +9,7 @@ export default function Header() {
 
   return (
     <header>
-      <h1>Neville's News App</h1>
+      <h1>Emerald News</h1>
 
       <div className="userBox">
         <Link to="/Users">
