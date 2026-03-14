@@ -94,11 +94,14 @@ nav a {
 
 .articleCard {
   width: 100%;
-  display: flex;
-  border: 1px solid white;
+  display: grid;
+  grid-template-columns: 1fr 1fr 100px;
+  grid-template-rows: 1fr 1fr;
   border-radius: 8px;
   overflow: hidden;
-  margin: 10px;
+  height: 80px;
+  background: rgba(3, 64, 3, 0.15);
+  border: 1px solid rgba(3, 64, 3, 0.3);
 }
 
 .articleCard img {
