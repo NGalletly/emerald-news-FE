@@ -22,7 +22,7 @@ export default function Home() {
 
   return (
     <div className="pageContainer">
-      <h1>todays HOT articles!</h1>
+      <h1>todays trending articles!</h1>
 
       <section className="home">
         {articles.slice(0, 3).map((article) => (

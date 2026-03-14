@@ -17,19 +17,17 @@ export default function ArticleCard({ article }) {
   let formatTime = timeFormatter(created_at);
   return (
     <>
-      <div key={article_id} className="articleCard">
-        <p>author: {author}</p>
-        <p>{title}</p>
-        <p>Topic: {topic}</p>
-        <p>Created at: {formatTime}</p>
-        <p>comments: {comment_count}</p>
-        <p>Votes: {votes}</p>
-        <img src={article_img_url} alt="" />
-
-        <Link to={`/articles/${article.article_id}`}>
-          <button>More</button>
+      <div className="slitherCard">
+        <p className="slitherCardTitle">{title}</p>
+        <p className="slitherCardInfo">
+          {topic} | {author} | {formatTime} | &#128172; {comment_count} |
+          &#128150; {votes}
+        </p>
+        <Link to={`/articles/${article_id}`}>
+          <button className="slitherCardBtn">More</button>
         </Link>
-      </div>
+        <img src={article_img_url} alt="" />
+      </div>{" "}
     </>
   );
 }
