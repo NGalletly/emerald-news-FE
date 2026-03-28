@@ -40,9 +40,21 @@ export async function patchArticleVote(id, changeVote) {
   return response.data;
 }
 
-export async function getArticlesByTopics(topic) {
+export async function getArticlesByTopics(params) {
+  // Handle both string (just topic) and object (with sort params)
+  const topic = typeof params === "string" ? params : params.topic;
+  const sort_by = params.sort_by || "created_at";
+  const order_by = params.order_by || "desc";
+
   const response = await axios.get(
-    `https://emerald-news.onrender.com/api/articles?topic=${topic}`,
+    `https://emerald-news.onrender.com/api/articles`,
+    {
+      params: {
+        topic: topic,
+        sort_by: sort_by,
+        order_by: order_by,
+      },
+    },
   );
   return response.data;
 }
