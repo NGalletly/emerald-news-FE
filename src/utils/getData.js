@@ -41,7 +41,6 @@ export async function patchArticleVote(id, changeVote) {
 }
 
 export async function getArticlesByTopics(params) {
-  // Handle both string (just topic) and object (with sort params)
   const topic = typeof params === "string" ? params : params.topic;
   const sort_by = params.sort_by || "created_at";
   const order_by = params.order_by || "desc";
