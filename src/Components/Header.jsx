@@ -9,7 +9,6 @@ export default function Header() {
     <header>
       <h1>Emerald News</h1>
 
-      {/* Desktop Navigation - hidden on mobile */}
       <nav className="desktop-nav">
         <ul>
           <li>

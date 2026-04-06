@@ -100,7 +100,6 @@ export default function SelectedArticle() {
             onClick={handleClick}
           >
             {liked ? "❤️ Liked" : "🤍 Like"}
-            {/* &#129293; */}
           </button>
         </div>
         <div className="commentBar likeBar">
